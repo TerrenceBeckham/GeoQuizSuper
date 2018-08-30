@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,7 +15,8 @@ import static android.widget.Toast.makeText;
 public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
-    private Button mNextButton;
+    private ImageButton mNextButton;
+    private ImageButton mPreviousButton;
     private TextView mQuestionTextView;
 
 
@@ -71,6 +74,23 @@ public class QuizActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
+
+
+        mPreviousButton = findViewById(R.id.previous_button);
+        mPreviousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentIndex != 0) {
+                    mCurrentIndex = (mCurrentIndex - 1);
+                    updateQuestion();
+                }  
+
+                updateQuestion();
+            }
+        });
+
+
+
 //        This update question is called during onCreate to set the value initially
         updateQuestion();
         mQuestionTextView.setOnClickListener(new View.OnClickListener() {
